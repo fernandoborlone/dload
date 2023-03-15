@@ -1,6 +1,11 @@
 /// <reference types="Cypress"/>
 
-import loc from './Locators/locators'
+import loc from './locators/locators'
+
+Cypress.Commands.add('access_register_users_page', () => {
+  cy.get(loc.PAGE_HOME.BTN_CREATE_USERS).click()
+  cy.url().should('include', '/cadastrarusuarios')
+  })
 
 Cypress.Commands.add('access_register_page', () => {
   cy.get(loc.PAGE_LOGIN.LINK_REGISTER).click()
@@ -10,6 +15,23 @@ Cypress.Commands.add('access_register_page', () => {
 Cypress.Commands.add('access_products_list_page', () => {
   cy.get(loc.PAGE_HOME.BTN_PRODUCTS_LIST).click()
   cy.url().should('contain', '/listarprodutos')
+})
+
+Cypress.Commands.add('awaiting_requisition', (text) => {
+  cy.wait(text)
+})
+
+Cypress.Commands.add('create_account', (name, email, password) => {
+  cy.access_register_page()
+  cy.fill_form(name, email, password)
+  cy.select_adm_account()
+  cy.submit_form()
+})
+
+Cypress.Commands.add('create_users', (name, email, password) => {
+  cy.fill_form(name, email, password)
+  cy.select_adm_account()
+  cy.submit_form_user()
 })
 
 Cypress.Commands.add('fill_form', (name, email, password) => {
@@ -33,45 +55,12 @@ Cypress.Commands.add('fill_passwordless_form', (name, email) => {
   cy.get(loc.PAGE_REGISTER.INPUT_EMAIL).type(email)
 })
 
-Cypress.Commands.add('select_adm_acccount', () => {
-  cy.get(loc.PAGE_REGISTER.CHK_ADM_ACCOUNT).check()
-})
-
-Cypress.Commands.add('submit_form', () => {
-  cy.get(loc.PAGE_REGISTER.BTN_SUBMIT).click()
-})
-
-Cypress.Commands.add('submit_form_user', () => {
-  cy.get(loc.PAGE_CREATE_USER.BTN_CREATE_USER).click()
-})
-
-Cypress.Commands.add('create_account', (name, email, password) => {
-  cy.access_register_page()
-  cy.fill_form(name, email, password)
-  cy.select_adm_acccount()
-  cy.submit_form()
-})
-
-Cypress.Commands.add('create_users', (name, email, password) => {
-  cy.fill_form(name, email, password)
-  cy.select_adm_acccount()
-  cy.submit_form_user()
-})
-
-
-Cypress.Commands.add('awaiting_requisition', (text) => {
-  cy.wait(text)
-})
-
-Cypress.Commands.add('verify_register_succesfuly', (txtCreateMensage, txtWelcome) => {
-  cy.get(loc.PAGE_REGISTER.ALERT).should('have.text', txtCreateMensage)
-  cy.get('h1')
-    .should('be.visible')
-    .and('have.text', txtWelcome)
-})
-
-Cypress.Commands.add('verify_error_mensage', (errorMensage) => {
-  cy.get(loc.PAGE_REGISTER.ALERT_ERROR).should('have.text', errorMensage)
+Cypress.Commands.add('Invalid_login', (
+  email = Cypress.env('email'), password = Cypress.env('password')) => {
+  cy.visit(Cypress.config('baseUrl'))
+  cy.get(loc.PAGE_LOGIN.INPUT_EMAIL).type(email, { log: false })
+  cy.get(loc.PAGE_LOGIN.INPUT_PASSWORD).type(password, { log: false })
+  cy.get(loc.PAGE_LOGIN.BTN_SUBMIT).click()
 })
 
 Cypress.Commands.add('login', (
@@ -85,21 +74,29 @@ Cypress.Commands.add('login', (
   })
 })
 
-Cypress.Commands.add('Invalid_login', (
-  email = Cypress.env('email'), password = Cypress.env('password')) => {
-  cy.visit(Cypress.config('baseUrl'))
-  cy.get(loc.PAGE_LOGIN.INPUT_EMAIL).type(email, { log: false })
-  cy.get(loc.PAGE_LOGIN.INPUT_PASSWORD).type(password, { log: false })
-  cy.get(loc.PAGE_LOGIN.BTN_SUBMIT).click()
+Cypress.Commands.add('select_adm_account', () => {
+  cy.get(loc.PAGE_REGISTER.CHK_ADM_ACCOUNT).check()
+})
+
+Cypress.Commands.add('submit_form', () => {
+  cy.get(loc.PAGE_REGISTER.BTN_SUBMIT).click()
+})
+
+Cypress.Commands.add('submit_form_user', () => {
+  cy.get(loc.PAGE_CREATE_USER.BTN_CREATE_USER).click()
+})
+
+Cypress.Commands.add('verify_error_mensage', (errorMensage) => {
+  cy.get(loc.PAGE_REGISTER.ALERT_ERROR).should('have.text', errorMensage)
+})
+
+Cypress.Commands.add('verify_register_succesfuly', (txtCreateMensage, txtWelcome) => {
+  cy.get(loc.PAGE_REGISTER.ALERT).should('have.text', txtCreateMensage)
+  cy.get('h1')
+    .should('be.visible')
+    .and('have.text', txtWelcome)
 })
 
 Cypress.Commands.add('verify_products_list', (qntProducts) => {
   cy.get(loc.PAGE_PRODUCTS_LIST.TBL_LIST).should('have.length', qntProducts)
-})
-
-
-// Create Users
-Cypress.Commands.add('access_create_users_page', () => {
-cy.get(loc.PAGE_HOME.BTN_CREATE_USERS).click()
-cy.url().should('include', '/cadastrarusuarios')
 })

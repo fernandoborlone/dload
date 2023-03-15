@@ -8,6 +8,7 @@ const mensage = {
   errorMensage: {
     txtNameRequered: '×Nome é obrigatório',
     txtEmailRequered: '×Email é obrigatório',
+    txtEmailInUse: '×Este email já está sendo usado',
     txtPasswordRequered: '×Password é obrigatório'
   }
 }
@@ -33,13 +34,12 @@ describe('Sign up', () => {
       cy.verify_register_succesfuly(mensage.txtCreateMensage, txtWelcome)
     })
 
-    it('Should register user for registration page', () => {
+    it('Should register user by registration page', () => {
 
       cy.login()
       cy.visit('/admin/home')
 
-      cy.access_create_users_page()
-
+      cy.access_register_users_page()
       cy.create_users(name, email, password)
       cy.awaiting_requisition('@postCreateUser')
       cy.contains(name).should('be.visible')
@@ -51,7 +51,7 @@ describe('Sign up', () => {
 
         cy.create_account(name, 'admin@user.com.br', password)
         cy.awaiting_requisition('@postCreateUser')
-        cy.verify_error_mensage('×Este email já está sendo usado')
+        cy.verify_error_mensage(mensage.errorMensage.txtEmailInUse)
       })
 
       it('Should display the alert: Name is required', () => {
