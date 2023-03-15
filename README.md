@@ -1,6 +1,8 @@
 # Teste Dload
 Repositório de testes e2e, API e Performance utilizando Cypress.io e Jmeter, para [Dload](https://dload.com/).
 
+<br>
+
 ## Pré-Requisitos
 Para instalar as dependências do projeto e rodar os testes é necessário que o [Node.js](https://nodejs.org/en) e o [NPM](https://www.npmjs.com) estejam instalados em seu computador.
 
@@ -61,6 +63,17 @@ Arquivo que contém as dependencias de desenvolvimento, bem como adicionamos os 
 ___
 
 ## Informações adicionais
-> Este projeto utiliza o [Faker-br](https://www.npmjs.com/package/faker-br) para gerar dados randomicos em alguns cenários testes.<p>
-> Utiliza o [cypress-mochawesome-reporter](https://www.npmjs.com/package/cypress-mochawesome-reporter) para gerar relaótio das execuções dos testes.<p>
+
+> Para este projeto foi utilizado o website [ServeRest](https://serverest.dev/), o qual possui um front e uma API REST gratuita que simula uma loja virtual com intuito de servir de material de estudos de testes de API.
+
+<p>
+
+> Este projeto utiliza o [Faker-br](https://www.npmjs.com/package/faker-br) para gerar dados randomicos em alguns cenários testes.
+
+<p>
+
+> Utiliza o [cypress-mochawesome-reporter](https://www.npmjs.com/package/cypress-mochawesome-reporter) para gerar relaótio das execuções dos testes.
+
+<p>
+
 > Utiliza o [cypress-plugin-api](https://www.npmjs.com/package/cypress-plugin-api) para imprimir informações sobre a chamada de API na interface do usuário do aplicativo Cypress.

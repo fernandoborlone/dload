@@ -6,7 +6,6 @@
   "scripts": {
     "test:open_dev": "npx cypress open --env configFile=dev",
     "test:run_dev": "npx cypress run --env configFile=dev --reporter mochawesome"
-
   },
   "keywords": [
     "cypress",
@@ -19,6 +18,7 @@
   "devDependencies": {
     "cypress": "^12.7.0",
     "cypress-mochawesome-reporter": "^3.3.0",
+    "cypress-plugin-api": "^2.10.3",
     "faker-br": "^0.4.1"
   }
 }
