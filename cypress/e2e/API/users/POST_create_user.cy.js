@@ -27,7 +27,8 @@ describe('Service: Create Users', () => {
             "message": "Cadastro realizado com sucesso"
           })
         })
-    })
+        cy.writeFile('cypress/fixtures/data/users_email.txt', email + ', \n', { flag: 'a+' })
+      })
 
   })
 

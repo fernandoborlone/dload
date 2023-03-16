@@ -3,3 +3,4 @@ cypress/config/dev.json
 cypress/screenshots
 cypress/videos
 cypress/reports
+cypress/fixtures

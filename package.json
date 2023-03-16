@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test:open_dev": "npx cypress open --env configFile=dev",
-    "test:run_dev": "npx cypress run --env configFile=dev --reporter mochawesome"
+    "test:run_dev": "npx cypress run --env configFile=dev --reporter mochawesome",
+    "test:create_10_users": "npx cypress run --spec cypress/e2e/API/data_test/POST_create_users.cy.js",
+    "test:create_10_products": "npx cypress run --spec cypress/e2e/API/data_test/POST_create_products.cy.js",
+    "generate_data_testing": "npm run test:create_10_users && npm run test:create_10_products"
+
   },
   "keywords": [
     "cypress",
