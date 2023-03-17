@@ -8,8 +8,12 @@
     "test:run_dev": "npx cypress run --env configFile=dev --reporter mochawesome",
     "test:create_10_users": "npx cypress run --spec cypress/e2e/API/data_test/POST_create_users.cy.js",
     "test:create_10_products": "npx cypress run --spec cypress/e2e/API/data_test/POST_create_products.cy.js",
-    "generate_data_testing": "npm run test:create_10_users && npm run test:create_10_products"
-
+    "generate_data_testing": "npm run test:create_10_users && npm run test:create_10_products",
+    "clean_reports": "rm -rf cypress/reports && rm -rf results.json",
+    "clean_screenshots": "rm -rf cypress/screenshots",
+    "clean_videos": "rm -rf cypress/videos",
+    "clean_data": "rm -rf cypress/fixtures/data",
+    "clean_all": "npm run clean_reports && npm run clean_screenshots && npm run clean_videos && npm run clean_data"
   },
   "keywords": [
     "cypress",

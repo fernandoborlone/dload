@@ -5,6 +5,7 @@ const sucessfulyMessage = 'Login realizado com sucesso'
 const errorMessage = 'Email e/ou senha inválidos'
 
 describe('Service: Login via API', () => {
+  
   it('POST - Should login', () => {
 
     cy.login_api().then((resp) => {
