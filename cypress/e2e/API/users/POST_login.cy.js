@@ -16,20 +16,15 @@ describe('Service: Login via API', () => {
     password = faker.internet.password()
     administrator = 'true'
 
-    // Created user via API
-    cy.create_users_api(name, email, password, administrator)
+    // Created user by API
+    cy.create_user_api(name, email, password, administrator)
       .then((resp) => {
         return new Promise(resolve => {
-          expect(resp).property('status').to.equal(201)
-          expect(resp).property('statusText').to.equal('Created')
-          expect(resp.body).to.have.property('message');
-          expect(resp.body).to.have.property('_id');
-          expect(resp.body).property('message').to.be.a('string')
-          expect(resp.body).to.contain({
-            "message": "Cadastro realizado com sucesso"
-          })
+          expect(resp.status).to.eq(201)
+          expect(resp).to.have.property('statusText', 'Created')
+          expect(resp.body).to.have.property('message', 'Cadastro realizado com sucesso')
+          expect(resp.body).to.have.property('_id')
           resolve(email, password)
-          console.log(resp)
         })
       })
   })
@@ -37,23 +32,23 @@ describe('Service: Login via API', () => {
   it('POST - Should login', () => {
 
     cy.login_api(email, password).then((resp) => {
-      expect(resp).property('status').to.equal(200)
-      expect(resp.body).property('message').to.equal(sucessfulyMessage)
+      expect(resp.status).to.eq(200)
+      expect(resp.body).to.have.property('message', sucessfulyMessage)
     })
   })
 
   context('Context: Error Messages', () => {
     it('POST - Should display an alert when login whith invalid email', () => {
       cy.login_api('invalid@email.com.br', password).then((resp) => {
-        expect(resp).property('status').to.equal(401)
-        expect(resp.body).property('message').to.equal(errorMessage)
+        expect(resp.status).to.eq(401)
+        expect(resp.body).to.have.property('message', errorMessage)
       })
     })
 
     it('POST - Should display an alert when login whith invalid password', () => {
       cy.login_api(email, '999999').then((resp) => {
-        expect(resp).property('status').to.equal(401)
-        expect(resp.body).property('message').to.equal(errorMessage)
+        expect(resp.status).to.eq(401)
+        expect(resp.body).to.have.property('message', errorMessage)
       })
     })
   })

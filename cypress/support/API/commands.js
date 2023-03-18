@@ -1,6 +1,6 @@
 const url_api = 'https://serverest.dev'
 
-Cypress.Commands.add('create_users_api', (nome, email, password, administrador) => {
+Cypress.Commands.add('create_user_api', (nome, email, password, administrador) => {
   cy.api({
     method: 'POST',
     url: `${Cypress.config('url_api')}/usuarios`,
@@ -16,7 +16,7 @@ Cypress.Commands.add('create_users_api', (nome, email, password, administrador) 
   })
 })
 
-Cypress.Commands.add('create_produts_api', (token, nome, price, descption, quantity) => {
+Cypress.Commands.add('create_produt_api', (token, nome, price, descption, quantity) => {
   cy.api({
     method: 'POST',
     url: `${Cypress.config('url_api')}/produtos`,
@@ -35,7 +35,7 @@ Cypress.Commands.add('create_produts_api', (token, nome, price, descption, quant
   })
 })
 
-Cypress.Commands.add('get_list_products', () => {
+Cypress.Commands.add('list_products', () => {
   cy.api({
     method: 'GET',
     url: `${Cypress.config('url_api')}/produtos`,
@@ -46,7 +46,42 @@ Cypress.Commands.add('get_list_products', () => {
   })
 })
 
-Cypress.Commands.add('get_list_users', () => {
+Cypress.Commands.add('list_product_by_id', (id) => {
+  cy.api({
+    method: 'GET',
+    url: `${Cypress.config('url_api')}/produtos?_id=${id}`,
+    failOnStatusCode: false,
+    headers: {
+      'content-type': 'application/json'
+    }
+  })
+})
+
+Cypress.Commands.add('list_product_by_name', (productname) => {
+  cy.api({
+    method: 'GET',
+    url: `${Cypress.config('url_api')}/produtos?nome=${productname}`,
+    failOnStatusCode: false,
+    headers: {
+      'content-type': 'application/json'
+    }
+  })
+})
+
+Cypress.Commands.add('list_product_by_description', (description) => {
+  cy.api({
+    method: 'GET',
+    url: `${Cypress.config('url_api')}/produtos?descricao=${description}`,
+    failOnStatusCode: false,
+    headers: {
+      'content-type': 'application/json'
+    }
+  })
+})
+
+
+
+Cypress.Commands.add('list_users', () => {
   cy.api({
     method: 'GET',
     url: `${Cypress.config('url_api')}/usuarios`,
@@ -57,7 +92,7 @@ Cypress.Commands.add('get_list_users', () => {
   })
 })
 
-Cypress.Commands.add('get_list_users_by_id', (id) => {
+Cypress.Commands.add('list_user_by_id', (id) => {
   cy.api({
     method: 'GET',
     url: `${Cypress.config('url_api')}/usuarios?_id=${id}`,
@@ -68,7 +103,7 @@ Cypress.Commands.add('get_list_users_by_id', (id) => {
   })
 })
 
-Cypress.Commands.add('get_list_users_by_name', (name) => {
+Cypress.Commands.add('list_user_by_name', (name) => {
   cy.api({
     method: 'GET',
     url: `${Cypress.config('url_api')}/usuarios?nome=${name}`,
@@ -79,7 +114,7 @@ Cypress.Commands.add('get_list_users_by_name', (name) => {
   })
 })
 
-Cypress.Commands.add('get_list_users_by_email', (email) => {
+Cypress.Commands.add('list_user_by_email', (email) => {
   cy.api({
     method: 'GET',
     url: `${Cypress.config('url_api')}/usuarios?email=${email}`,
@@ -90,7 +125,7 @@ Cypress.Commands.add('get_list_users_by_email', (email) => {
   })
 })
 
-Cypress.Commands.add('delete_users_api', (id) => {
+Cypress.Commands.add('delete_user_api', (id) => {
   cy.api({
     method: 'DELETE',
     url: `${Cypress.config('url_api')}/usuarios/${id}`,

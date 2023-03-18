@@ -17,20 +17,15 @@ describe('Login', () => {
       password = faker.internet.password()
       administrator = 'true'
 
-      // Created user via API
-      cy.create_users_api(name, email, password, administrator)
+      // Created user by API
+      cy.create_user_api(name, email, password, administrator)
         .then((resp) => {
           return new Promise(resolve => {
-            expect(resp).property('status').to.equal(201)
-            expect(resp).property('statusText').to.equal('Created')
-            expect(resp.body).to.have.property('message');
-            expect(resp.body).to.have.property('_id');
-            expect(resp.body).property('message').to.be.a('string')
-            expect(resp.body).to.contain({
-              "message": "Cadastro realizado com sucesso"
-            })
+            expect(resp.status).to.eq(201)
+            expect(resp).to.have.property('statusText', 'Created')
+            expect(resp.body).to.have.property('message', 'Cadastro realizado com sucesso')
+            expect(resp.body).to.have.property('_id')
             resolve(email, password)
-            console.log(resp)
           })
         })
     })
@@ -48,12 +43,12 @@ describe('Login', () => {
         .and('have.text', txtWelcome)
     })
   })
-})
 
-describe('Context: Invalid Credentials', () => {
-  it('Should display the Alert: Email e/ou senha inválidos', () => {
-
-    cy.Invalid_login('invalid@email.com.br', 'invalid_password')
-    cy.verify_error_mensage(errorMensage)
+  context('Context: Invalid Credentials', () => {
+    it('Should display the Alert: Email e/ou senha inválidos', () => {
+  
+      cy.invalid_login('invalid@email.com.br', 'invalid_password')
+      cy.verify_error_mensage(errorMensage)
+    })
   })
 })

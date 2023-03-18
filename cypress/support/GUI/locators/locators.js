@@ -2,8 +2,16 @@ const locators = {
   PAGE_CREATE_USER: {
     BTN_CREATE_USER: 'button[data-testid="cadastrarUsuario"]'
   },
+  PAGE_CREATE_PRODUCT: {
+    BTN_REGISTER: 'button[data-testid="cadastarProdutos"]',
+    INPUT_NAME: 'input[data-testid="nome"]',
+    INPUT_PRICE: 'input[data-testid="preco"]',
+    INPUT_DESCRIPTION: 'textarea[data-testid="descricao"]',
+    INPUT_QUANTITY: 'input[data-testid="quantity"]'
+  },
   PAGE_HOME: {
     BTN_CREATE_USERS: 'a[data-testid="cadastrarUsuarios"]',
+    BTN_CREATE_PRODUCTS: 'a[data-testid="cadastrarProdutos"]',
     BTN_LOGOUT: 'button[data-testid="logout"]',
     BTN_PRODUCTS_LIST: 'a[data-testid="listarProdutos"]',
   },

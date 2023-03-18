@@ -14,32 +14,23 @@ describe('Service: Editions Users', () => {
     password = faker.internet.password()
     administrator = 'true'
 
-    cy.create_users_api(name, email, password, administrator)
+    cy.create_user_api(name, email, password, administrator)
       .then((resp) => {
         return new Promise(resolve => {
-          expect(resp).property('status').to.equal(201)
-          expect(resp).property('statusText').to.equal('Created')
-          expect(resp.body).to.have.property('message');
-          expect(resp.body).to.have.property('_id');
-          expect(resp.body).property('message').to.be.a('string')
-          expect(resp.body).to.contain({
-            "message": "Cadastro realizado com sucesso"
-          })
-          id = resp.body['_id']
+          expect(resp.status).to.eq(201)
+          expect(resp).to.have.property('statusText', 'Created')
+          expect(resp.body).to.have.property('message', 'Cadastro realizado com sucesso')
+          expect(resp.body).to.have.property('_id')
+           id = resp.body['_id']
           resolve(id)
-          console.log(resp)
         })
       })
   })
 
   it('PUT - Should edit the name of user', () => {
-
     cy.edit_user_api(id, name = 'Altered name', email, password, administrator).then((resp) => {
       expect(resp).property('status').to.equal(200)
-      expect(resp.body).property('message').to.be.a('string')
-      expect(resp.body).to.contain({
-        "message": "Registro alterado com sucesso"
-      })
+      expect(resp.body).property('message', 'Registro alterado com sucesso')
     })
   })
 })

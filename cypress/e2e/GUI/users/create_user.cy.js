@@ -39,8 +39,8 @@ describe('Sign up', () => {
 
     it('Should register user by registration page', () => {
 
-      // Created user via API
-      cy.create_users_api(name, email, password, administrator)
+      // Created user by API
+      cy.create_user_api(name, email, password, administrator)
         .then((resp) => {
           return new Promise(resolve => {
             expect(resp).property('status').to.equal(201)
@@ -52,7 +52,6 @@ describe('Sign up', () => {
               "message": "Cadastro realizado com sucesso"
             })
             resolve(email, password)
-            console.log(resp)
           })
         })
 
@@ -69,7 +68,7 @@ describe('Sign up', () => {
 
       it('Should display the alert: This email is already in use', () => {
 
-        cy.create_account(name, 'admin@user.com.br', password)
+        cy.create_account(name, 'fulano@qa.com', password)
         cy.awaiting_requisition('@postCreateUser')
         cy.verify_error_mensage(mensage.errorMensage.txtEmailInUse)
       })
