@@ -1,0 +1,15 @@
+name: Testing e2e and API with Cypress
+on:
+  push:
+    branches:
+      - main
+      - dev
+jobs:
+  all-tests:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v1.0.0
+
+      - name: All E2E tests 🧪
+        uses: cypress-io/github-action@v4.1.0
