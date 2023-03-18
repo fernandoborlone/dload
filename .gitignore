@@ -1,5 +1,4 @@
 /node_modules
-cypress/config/dev.json
 cypress/screenshots
 cypress/videos
 cypress/reports

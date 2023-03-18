@@ -3,7 +3,7 @@ const url_api = 'https://serverest.dev'
 Cypress.Commands.add('create_users_api', (nome, email, password, administrador) => {
   cy.api({
     method: 'POST',
-    url: `${url_api}/usuarios`,
+    url: `${Cypress.config('url_api')}/usuarios`,
     failOnStatusCode: false,
     body:
     {
@@ -19,7 +19,7 @@ Cypress.Commands.add('create_users_api', (nome, email, password, administrador) 
 Cypress.Commands.add('create_produts_api', (token, nome, price, descption, quantity) => {
   cy.api({
     method: 'POST',
-    url: `${url_api}/produtos`,
+    url: `${Cypress.config('url_api')}/produtos`,
     headers: {
       authorization: token
     },
@@ -38,7 +38,7 @@ Cypress.Commands.add('create_produts_api', (token, nome, price, descption, quant
 Cypress.Commands.add('get_list_products', () => {
   cy.api({
     method: 'GET',
-    url: `${url_api}/produtos`,
+    url: `${Cypress.config('url_api')}/produtos`,
     failOnStatusCode: false,
     headers: {
       'content-type': 'application/json'
@@ -49,7 +49,7 @@ Cypress.Commands.add('get_list_products', () => {
 Cypress.Commands.add('get_list_users', () => {
   cy.api({
     method: 'GET',
-    url: `${url_api}/usuarios`,
+    url: `${Cypress.config('url_api')}/usuarios`,
     failOnStatusCode: false,
     headers: {
       'content-type': 'application/json'
@@ -60,7 +60,7 @@ Cypress.Commands.add('get_list_users', () => {
 Cypress.Commands.add('get_list_users_by_id', (id) => {
   cy.api({
     method: 'GET',
-    url: `${url_api}/usuarios?_id=${id}`,
+    url: `${Cypress.config('url_api')}/usuarios?_id=${id}`,
     failOnStatusCode: false,
     headers: {
       'content-type': 'application/json'
@@ -71,7 +71,7 @@ Cypress.Commands.add('get_list_users_by_id', (id) => {
 Cypress.Commands.add('get_list_users_by_name', (name) => {
   cy.api({
     method: 'GET',
-    url: `${url_api}/usuarios?nome=${name}`,
+    url: `${Cypress.config('url_api')}/usuarios?nome=${name}`,
     failOnStatusCode: false,
     headers: {
       'content-type': 'application/json'
@@ -82,7 +82,7 @@ Cypress.Commands.add('get_list_users_by_name', (name) => {
 Cypress.Commands.add('get_list_users_by_email', (email) => {
   cy.api({
     method: 'GET',
-    url: `${url_api}/usuarios?email=${email}`,
+    url: `${Cypress.config('url_api')}/usuarios?email=${email}`,
     failOnStatusCode: false,
     headers: {
       'content-type': 'application/json'
@@ -93,7 +93,7 @@ Cypress.Commands.add('get_list_users_by_email', (email) => {
 Cypress.Commands.add('delete_users_api', (id) => {
   cy.api({
     method: 'DELETE',
-    url: `${url_api}/usuarios/${id}`,
+    url: `${Cypress.config('url_api')}/usuarios/${id}`,
     failOnStatusCode: false,
     resp: []
   })
@@ -102,7 +102,7 @@ Cypress.Commands.add('delete_users_api', (id) => {
 Cypress.Commands.add('login_api', (email = Cypress.env('email'), password = Cypress.env('password')) => {
   cy.api({
     method: 'POST',
-    url: `${url_api}/login`,
+    url: `${Cypress.config('url_api')}/login`,
     headers: {
       authorization: `${Cypress.env('token')}`
     },
@@ -118,7 +118,7 @@ Cypress.Commands.add('login_api', (email = Cypress.env('email'), password = Cypr
 Cypress.Commands.add('edit_user_api', (id, nome, email, password, administrador) => {
   cy.api({
     method: 'PUT',
-    url: `${url_api}/usuarios/${id}`,
+    url: `${Cypress.config('url_api')}/usuarios/${id}`,
     failOnStatusCode: false,
 
     body:

@@ -1,0 +1,9 @@
+{
+  "baseUrl": "https://front.serverest.dev/",
+  "url_api": "https://serverest.dev",
+  "env": {
+    "environment": "DEV",
+    "email": "<Your email>",
+    "password": "<Your password>"
+  }
+}
