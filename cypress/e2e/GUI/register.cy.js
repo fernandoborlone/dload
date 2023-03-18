@@ -3,6 +3,8 @@ const faker = require('faker-br');
 let name = null
 let email = null
 let password = null
+let administrator = null
+
 const mensage = {
   txtCreateMensage: 'Cadastro realizado com sucesso',
   errorMensage: {
@@ -19,6 +21,7 @@ describe('Sign up', () => {
     name = faker.name.firstName()
     email = faker.internet.email(name)
     password = faker.internet.password()
+    administrator = 'true'
 
     cy.intercept('POST', '**/usuarios').as('postCreateUser')
 
@@ -36,11 +39,28 @@ describe('Sign up', () => {
 
     it('Should register user by registration page', () => {
 
-      cy.login()
+      // Created user via API
+      cy.create_users_api(name, email, password, administrator)
+        .then((resp) => {
+          return new Promise(resolve => {
+            expect(resp).property('status').to.equal(201)
+            expect(resp).property('statusText').to.equal('Created')
+            expect(resp.body).to.have.property('message');
+            expect(resp.body).to.have.property('_id');
+            expect(resp.body).property('message').to.be.a('string')
+            expect(resp.body).to.contain({
+              "message": "Cadastro realizado com sucesso"
+            })
+            resolve(email, password)
+            console.log(resp)
+          })
+        })
+
+      cy.login(email, password)
       cy.visit('/admin/home')
 
       cy.access_register_users_page()
-      cy.create_users(name, email, password)
+      cy.create_users(name = faker.name.firstName(), email = faker.internet.email(name), password)
       cy.awaiting_requisition('@postCreateUser')
       cy.contains(name).should('be.visible')
     })
