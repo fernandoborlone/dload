@@ -1,4 +1,4 @@
-name: Testing e2e and API with Cypress
+name: Testing e2e and api with Cypress
 on:
   push:
     branches:
@@ -11,10 +11,10 @@ jobs:
       - name: Checkout 🛎
         uses: actions/checkout@v1.0.0
 
-      - name: Cyprees run All tests 🧪
+      - name: Cypress run all tests 🧪
         uses: cypress-io/github-action@v4.1.0
         with:
-          start: npm start
+          start: npm run test:run_dev
           wait-on: 'http://localhost:3000'
           spec: 'cypress/e2e/all_specs.cy.js'
 
