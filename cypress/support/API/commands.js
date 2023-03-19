@@ -134,6 +134,18 @@ Cypress.Commands.add('delete_user_api', (id) => {
   })
 })
 
+Cypress.Commands.add('delete_product_api', (idProduto, token) => {
+  cy.api({
+    method: 'DELETE',
+    url: `${Cypress.config('url_api')}/produtos/${idProduto}`,
+    headers: {
+      authorization: token
+    },
+    failOnStatusCode: false,
+    resp: []
+  })
+})
+
 Cypress.Commands.add('login_api', (email = Cypress.env('email'), password = Cypress.env('password')) => {
   cy.api({
     method: 'POST',

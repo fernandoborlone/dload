@@ -33,3 +33,10 @@ Para gerar massa de teste, no diretório raiz do projeto de automação, execute
 7 - Clique no botão `Start` para executar o teste.
 > Veja os resultados em `Relatório de Sumário` (Summary Report) ou em `Ver Árvore de Resultados` (View Results Tree)
 
+______
+
+## Informações Adicionais
+
+### Performance Report
+
+<img width="1974" alt="Dload test cases" src="https://user-images.githubusercontent.com/69471264/226148869-fa1c89c3-feb3-4850-91a4-ec36a77093e5.png">

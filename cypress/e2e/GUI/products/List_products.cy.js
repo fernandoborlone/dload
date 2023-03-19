@@ -35,7 +35,7 @@ describe('Products', () => {
       cy.visit('/admin/home')
     })
 
-    it('List All Products', () => {
+    it('Should view all products', () => {
       cy.access_products_list_page()
       cy.awaiting_requisition('@getProducts')
 

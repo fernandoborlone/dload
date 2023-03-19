@@ -12,7 +12,7 @@ let quantity = null
 
 describe('Products', () => {
 
-  context('Context: List Products', () => {
+  context('Context: Create Products', () => {
 
     before(() => {
       name = faker.name.firstName()

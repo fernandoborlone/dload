@@ -16,9 +16,9 @@ Faça o clone do projeto: `git clone git@github.com:fernandoborlone/dload.git`. 
 <br>
 
 ## Execução dos testes
+
 - Execute o comando `test:open_dev` para rodar os testes em modo interativo contra o ambiente dev.
 - Execute o comando `test:run_dev` para rodar os testes em modo _headless_ contra o ambiente dev.
-
 
 ___
 
@@ -65,6 +65,15 @@ ___
 ## Informações adicionais
 
 > Para este projeto foi utilizado o website [ServeRest](https://serverest.dev/), o qual possui um front e uma API REST gratuita que simula uma loja virtual com intuito de servir de material de estudos de testes de API.
+
+
+### Casos de testes Criados para este projeto
+<img width="1974" alt="Dload test cases" src="https://user-images.githubusercontent.com/69471264/226148517-af4fa04c-07d8-4c2c-b404-0180d4de21d5.png">
+
+
+### Video demo da execução dos testes
+https://user-images.githubusercontent.com/69471264/226148343-a8397792-14ab-40b1-ad6f-63d422d722af.mp4
+
 
 <p>
 
