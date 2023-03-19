@@ -14,4 +14,4 @@ jobs:
       - name: All E2E tests 🧪
         uses: cypress-io/github-action@v4.1.0
           with:
-            start: "npm run test:run_dev"
+            run: "npm run test:run_dev"
