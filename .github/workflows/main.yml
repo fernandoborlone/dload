@@ -15,5 +15,3 @@ jobs:
         uses: cypress-io/github-action@v5.1.0
         with:
           spec: 'cypress/e2e/all_specs.cy.js'
-      - run: npm run test:run_dev
-
