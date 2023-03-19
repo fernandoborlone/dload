@@ -11,7 +11,7 @@ jobs:
       - name: Checkout 🛎
         uses: actions/checkout@v1.0.0
 
-      - name: All E2E tests 🧪
+      - name: Cyprees run All tests 🧪
         uses: cypress-io/github-action@v4.1.0
         with:
           start: npm start
