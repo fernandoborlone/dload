@@ -24,7 +24,7 @@ describe('Service: List Users', () => {
   context('Context: Query Parameters', () => {
 
     beforeEach(() => {
-      name = faker.name.firstName()
+      name = `${faker.name.firstName()} ${faker.name.lastName()} `
       email = faker.internet.email(name)
       password = faker.internet.password()
       administrator = 'true'
