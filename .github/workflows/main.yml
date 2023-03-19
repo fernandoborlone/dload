@@ -14,6 +14,6 @@ jobs:
       - name: Cypress run all tests 🧪
         uses: cypress-io/github-action@v5.1.0
         with:
-          start: npm run test:run_dev
           spec: 'cypress/e2e/all_specs.cy.js'
+      - run: npm run test:run_dev
 
