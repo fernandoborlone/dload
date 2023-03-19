@@ -5,7 +5,7 @@ on:
       - main
       - dev
 jobs:
-  all-tests:
+  cypress-run-all-tests:
     runs-on: windows-latest
     steps:
       - name: Checkout 🛎
