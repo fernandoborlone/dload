@@ -54,8 +54,8 @@ Diretório onde são baixadas as dependencias do projeto
 ### cypress/.gitignore
 Local onde são alocados os diretórios e arquivos que serão ignorados pelo GIT(repositório)
 
-### cypress/config
-Diretório de configuração do projeto, utilizado para adicionar plugins, etc
+### cypress/config - cypress.config.js
+Diretório de configuração do projeto, utilizado para adicionar plugins, etc.
 > Nota: A configuração padrão deste projeto aponta para o ambiente de desenvolvimento (dev). Esta configuração pode ser alterada sempre que necessário, através do arquivo de configuração _cypress.config_, via script do arquivo package.json, ou via linha de comandos, diretamente no terminal
 
 ### cypress/package.json

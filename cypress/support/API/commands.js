@@ -1,5 +1,3 @@
-const url_api = 'https://serverest.dev'
-
 Cypress.Commands.add('create_user_api', (nome, email, password, administrador) => {
   cy.api({
     method: 'POST',

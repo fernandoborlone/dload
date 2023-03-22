@@ -30,7 +30,6 @@ module.exports = defineConfig({
     timestamp: 'dd-mm-yyyy_HH-MM-ss',
     capture: 'runner',
   },
-  chromeWebSecurity: false,
   e2e: {
     setupNodeEvents(on, config) {
       const file = config.env.configFile || 'dev'
