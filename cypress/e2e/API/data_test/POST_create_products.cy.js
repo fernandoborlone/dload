@@ -61,12 +61,16 @@ describe('Service: Create Products', () => {
     it('POST - Should create products', () => {
       cy.create_produt_api(token, productName, price, description, quantity, id)
         .then((resp) => {
-          expect(resp.status).to.eq(201)
-          expect(resp).have.property('statusText').to.eq('Created')
-          expect(resp.body).have.property('message', 'Cadastro realizado com sucesso')
+          return new Promise(resolve => {
+            expect(resp.status).to.eq(201)
+            expect(resp).have.property('statusText').to.eq('Created')
+            expect(resp.body).have.property('message', 'Cadastro realizado com sucesso')
+            id = resp.body['_id']
+            resolve(id, email, password)
 
-          // Creates idProduct file
-          cy.writeFile('cypress/fixtures/data/idProduct.txt', id + ', \n', { flag: 'a+' })
+            // Creates idProduct file
+            cy.writeFile('cypress/fixtures/data/idProduct.txt', id + ', \n', { flag: 'a+' })
+          })
         })
     })
   })
