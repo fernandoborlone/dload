@@ -1,13 +1,13 @@
 const locators = {
   PAGE_CREATE_USER: {
-    BTN_CREATE_USER: 'button[data-testid="cadastrarUsuario"]'
+    BTN_CREATE_USER: 'button[data-testid="cadastrarUsuario"]',
   },
   PAGE_CREATE_PRODUCT: {
     BTN_REGISTER: 'button[data-testid="cadastarProdutos"]',
     INPUT_NAME: 'input[data-testid="nome"]',
     INPUT_PRICE: 'input[data-testid="preco"]',
     INPUT_DESCRIPTION: 'textarea[data-testid="descricao"]',
-    INPUT_QUANTITY: 'input[data-testid="quantity"]'
+    INPUT_QUANTITY: 'input[data-testid="quantity"]',
   },
   PAGE_HOME: {
     BTN_CREATE_USERS: 'a[data-testid="cadastrarUsuarios"]',
@@ -19,10 +19,10 @@ const locators = {
     BTN_SUBMIT: 'button[data-testid="entrar"]',
     INPUT_EMAIL: 'input[data-testid="email"]',
     INPUT_PASSWORD: 'input[data-testid="senha"]',
-    LINK_REGISTER: 'a[data-testid="cadastrar"]'
+    LINK_REGISTER: 'a[data-testid="cadastrar"]',
   },
   PAGE_PRODUCTS_LIST: {
-    TBL_LIST: 'tbody tr'
+    TBL_LIST: 'tbody tr',
   },
   PAGE_REGISTER: {
     ALERT: '.alert-link',
@@ -32,6 +32,6 @@ const locators = {
     INPUT_EMAIL: 'input[data-testid="email"]',
     INPUT_NAME: 'input[data-testid="nome"]',
     INPUT_PASSWORD: 'input[data-testid="password"]',
-  }
+  },
 }
 export default locators

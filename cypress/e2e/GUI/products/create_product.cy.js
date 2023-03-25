@@ -11,9 +11,7 @@ let description = null
 let quantity = null
 
 describe('Products', () => {
-
   context('Context: Create Products', () => {
-
     before(() => {
       name = faker.name.firstName()
       email = faker.internet.email(name)
@@ -21,16 +19,18 @@ describe('Products', () => {
       administrator = 'true'
 
       // Created user by API
-      cy.create_user_api(name, email, password, administrator)
-        .then((resp) => {
-          return new Promise(resolve => {
-            expect(resp.status).to.eq(201)
-            expect(resp).to.have.property('statusText', 'Created')
-            expect(resp.body).to.have.property('message', 'Cadastro realizado com sucesso')
-            expect(resp.body).to.have.property('_id')
-            resolve(email, password)
-          })
+      cy.create_user_api(name, email, password, administrator).then(resp => {
+        return new Promise(resolve => {
+          expect(resp.status).to.eq(201)
+          expect(resp).to.have.property('statusText', 'Created')
+          expect(resp.body).to.have.property(
+            'message',
+            'Cadastro realizado com sucesso'
+          )
+          expect(resp.body).to.have.property('_id')
+          resolve(email, password)
         })
+      })
     })
 
     beforeEach(() => {

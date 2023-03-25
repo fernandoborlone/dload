@@ -4,6 +4,8 @@
   "description": "Repositório de testes End-to-end, Testes de API e stress test, utilizando o Cypress e JMeter",
   "main": "index.js",
   "scripts": {
+    "eslint": "eslint cypress/",
+    "eslint:fix": "eslint cypress/ --fix",
     "test:open_dev": "npx cypress open --env configFile=dev",
     "test:run_dev": "npx cypress run --env configFile=dev --reporter mochawesome --spec cypress/e2e/all_specs.cy.js",
     "test:create_10_users": "npx cypress run --spec cypress/e2e/API/data_test/POST_create_users.cy.js",
@@ -27,6 +29,12 @@
     "cypress": "^12.7.0",
     "cypress-mochawesome-reporter": "^3.3.0",
     "cypress-plugin-api": "^2.10.3",
-    "faker-br": "^0.4.1"
+    "eslint": "^8.36.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "faker-br": "^0.4.1",
+    "prettier": "^2.8.7"
   }
 }

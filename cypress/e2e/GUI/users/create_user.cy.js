@@ -1,4 +1,4 @@
-const faker = require('faker-br');
+const faker = require('faker-br')
 
 let name = null
 let email = null
@@ -11,12 +11,11 @@ const mensage = {
     txtNameRequered: '×Nome é obrigatório',
     txtEmailRequered: '×Email é obrigatório',
     txtEmailInUse: '×Este email já está sendo usado',
-    txtPasswordRequered: '×Password é obrigatório'
-  }
+    txtPasswordRequered: '×Password é obrigatório',
+  },
 }
 
 describe('Sign up', () => {
-
   beforeEach(() => {
     name = faker.name.firstName()
     email = faker.internet.email(name)
@@ -38,43 +37,42 @@ describe('Sign up', () => {
     })
 
     it('Should register user by registration page', () => {
-
       // Created user by API
-      cy.create_user_api(name, email, password, administrator)
-        .then((resp) => {
-          return new Promise(resolve => {
-            expect(resp).property('status').to.equal(201)
-            expect(resp).property('statusText').to.equal('Created')
-            expect(resp.body).to.have.property('message');
-            expect(resp.body).to.have.property('_id');
-            expect(resp.body).property('message').to.be.a('string')
-            expect(resp.body).to.contain({
-              "message": "Cadastro realizado com sucesso"
-            })
-            resolve(email, password)
+      cy.create_user_api(name, email, password, administrator).then(resp => {
+        return new Promise(resolve => {
+          expect(resp).property('status').to.equal(201)
+          expect(resp).property('statusText').to.equal('Created')
+          expect(resp.body).to.have.property('message')
+          expect(resp.body).to.have.property('_id')
+          expect(resp.body).property('message').to.be.a('string')
+          expect(resp.body).to.contain({
+            message: 'Cadastro realizado com sucesso',
           })
+          resolve(email, password)
         })
+      })
 
       cy.login(email, password)
       cy.visit('/admin/home')
 
       cy.access_register_users_page()
-      cy.create_users(name = faker.name.firstName(), email = faker.internet.email(name), password)
+      cy.create_users(
+        (name = faker.name.firstName()),
+        (email = faker.internet.email(name)),
+        password
+      )
       cy.awaiting_requisition('@postCreateUser')
       cy.contains(name).should('be.visible')
     })
 
     context('Context: Error Messages', () => {
-
       it('Should display the alert: This email is already in use', () => {
-
         cy.create_account(name, 'fulano@qa.com', password)
         cy.awaiting_requisition('@postCreateUser')
         cy.verify_error_mensage(mensage.errorMensage.txtEmailInUse)
       })
 
       it('Should display the alert: Name is required', () => {
-
         cy.access_register_page()
         cy.fill_nameless_form(email, password)
         cy.submit_form()
@@ -83,7 +81,6 @@ describe('Sign up', () => {
       })
 
       it('Should display the alert: Email is required', () => {
-
         cy.access_register_page()
         cy.fill_emailless_form(name, password)
         cy.submit_form()
@@ -92,7 +89,6 @@ describe('Sign up', () => {
       })
 
       it('Should display the alert: Password is required', () => {
-
         cy.access_register_page()
         cy.fill_passwordless_form(name, email)
         cy.submit_form()
