@@ -2,7 +2,6 @@ const faker = require('faker-br')
 
 let name = null
 let email = null
-let password = null
 let administrator = null
 
 describe('Service: Create Users', () => {
@@ -14,7 +13,6 @@ describe('Service: Create Users', () => {
   beforeEach(() => {
     name = faker.name.firstName()
     email = faker.internet.email(name)
-    password = faker.internet.password()
     administrator = ['true', 'false']
   })
 
